@@ -1,11 +1,16 @@
 var React = require("react");
 var ReactDOM = require("react-dom");
+
 var { Route, Router, IndexRoute, hashHistory } = require("react-router");
 
 var Main = require("./components/Main.jsx");
 var Weather = require("./components/Weather.jsx");
 var About = require("./components/About.jsx");
 var Examples = require("./components/Examples.jsx");
+
+//Load foundation
+require("style-loader!css-loader!foundation-sites/dist/foundation.min.css");
+$(document).foundation();
 
 ReactDOM.render(
 	<Router history={hashHistory}>

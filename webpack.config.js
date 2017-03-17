@@ -1,9 +1,18 @@
+var webpack = require("webpack");
 var path = require("path");
+
+const VENDOR_LIBS = [
+  "jquery", "foundation-sites"
+];
 
 module.exports = {
 	entry: {
-		bundle: "./src/app.jsx" 
+		vendor: VENDOR_LIBS,
+		bundle: "./src/app.jsx",
+		jquery: "script-loader!jquery/dist/jquery.min.js",
+    	foundation: "script-loader!foundation-sites/dist/foundation.min.js"
 	},
+
 	output: {
 		path: path.join(__dirname, "public"),
 		filename: "[name].js"
@@ -17,6 +26,16 @@ module.exports = {
 			}
 		]
 	},
+	plugins: [
+		new webpack.ProvidePlugin({
+			$ : 'jquery',
+			jQuery: 'jquery',
 
+		})
+	],
+	externals: {
+		foundation: 'Foundation',
+		jquery: 'jQuery'
+	},
 	devtool: "cheap-module-eval-source-map"
 }
